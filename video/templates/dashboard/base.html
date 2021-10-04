@@ -1,0 +1,24 @@
+<!--{% load static %}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+     <script src="/static/js/bootstrap.min.js" ></script>
+     <script src="/static/js/jquery-1.12.4.min.js"></script>
+    {% block handcss%}{% endblock %}
+</head>
+<body>
+    {% block handnav %}
+
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
+</body>
+
+    {% block footerjs %}
+
+    {% endblock %}
+</html>
