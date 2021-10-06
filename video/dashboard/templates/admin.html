@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+    管理员模块
+{% endblock %}
+
+{% block css %}
+    <style>
+        .pageCls{
+            width: 25px;
+            height: 35px;
+            line-height: 36px;
+            background: #4e6ef2;
+            font-size: 20px;
+            color: #fff;
+
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>管理员模块</h1>
+    <table class="table">
+        <tr>
+            <th>用户名</th>
+            <th>状态</th>
+            <th>创建时间</th>
+            <th>编辑</th>
+        </tr>
+            {% for user in pager_users_list %}
+                <tr>
+
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.is_superuser }}</td>
+                    <td>{{ user.date_joined }}</td>
+                    {% if user.is_superuser %}
+                        <td><a href="{% url 'admin_update_status' %}?status=off">取消管理员</a></td>
+                    {% else %}
+                        <td><a href="{% url 'admin_update_status' %}?status=on">成为管理员</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+    </table>
+
+    <div id="pager" style="text-align: center; font-size: 16px; overflow: hidden; margin-top: 10px;">
+        {#判断是否有上一页#}
+        {% if pager_users_list.has_previous %}
+            <a href="/dashboard/admin/manger?page={{ pager_users_list.previous_page_number }}"
+               style="display: inline-block; padding: 5px; margin: 5px;">上一页</a>
+        {% endif %}
+
+        {# 显示前十页页码 #}
+        {% for page in page_list %}
+            <a href="/dashboard/admin/manger?page={{ page }}"
+                    {% if current_num == page %}class="pageCls" {% endif %}
+               style="display: inline-block; padding: 5px; margin: 5px;">{{ page }}</a>
+        {% endfor %}
+
+
+        {#判断是否有下一页#}
+        {% if pager_users_list.has_next %}
+            <a href="/dashboard/admin/manger?page={{ pager_users_list.next_page_number }}"
+               style="display: inline-block; padding: 5px; margin: 5px;">下一页</a>
+        {% endif %}
+    </div>
+
+{% endblock %}

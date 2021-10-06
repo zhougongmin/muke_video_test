@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 
 def render_to_response(request, template, data=None):
-    context_instance = RequestContext(request)
+    context_instance = RequestContext(request)  # 上下文实例
     path = settings.TEMPLATES[0]['DIRS'][0]
 
     lookup = TemplateLookup(
@@ -31,6 +31,8 @@ def render_to_response(request, template, data=None):
 
     for d in context_instance:
         result.update(d)
+
+    result['request'] = request
 
     result['csrf_token'] = '<input type="hidden" name="csrfmiddlewaretoken" value="{0}" />'.format(
         request.META['CSRF_COOKIE'])

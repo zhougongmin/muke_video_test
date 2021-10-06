@@ -1,0 +1,75 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+    添加外链视频
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/external_video_add.css">
+{% endblock %}
+
+{% block content %}
+    <h1>添加外链视频</h1>
+    <form class="form-horizontal edit-area add-video-area" action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">视频名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="video_name"  placeholder="视频名称">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">海报</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="username"  placeholder="海报">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">视频类型</label>
+            <div class="col-sm-10">
+                <select class="form-control video_type_select">
+                    <option value ="volvo">Volvo</option>
+                    <option value ="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">视频来源</label>
+            <div class="col-sm-10">
+                <select class="form-control video_type_select">
+                    <option value ="volvo">Volvo</option>
+                    <option value ="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">视频国籍</label>
+            <div class="col-sm-10">
+                <select class="form-control video_type_select">
+                    <option value ="volvo">Volvo</option>
+                    <option value ="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit"  class="btn btn-default">添加</button> {{ error }}
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block js %}
+    <link rel="stylesheet" type="text/css" href="/static/js/external_video.js">
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+    外链视频
+{% endblock %}
+
+{% block content %}
+    <h1>外链视频</h1>
+    <button class="btn btn-info open-btn">
+        <a href="{% url 'external_video_add' %}">创建</a>
+    </button>
+    <table class="table">
+        <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>编辑</th>
+        </tr>
+        {% for name in from_name_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ name.from_to }}</td>
+                <td><a href="">删除</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <div id="pager" style="text-align: center; font-size: 16px; overflow: hidden; margin-top: 10px;">
+        {#判断是否有上一页#}
+        {% if from_name_list.has_previous %}
+            <a href="{% url 'external_video' %}?page={{ from_name_list.previous_page_number }}"
+               style="display: inline-block; padding: 5px; margin: 5px;">上一页</a>
+        {% endif %}
+
+        {# 显示前十页页码 #}
+        {% for page in page_list %}
+            <a href="{% url 'external_video' %}?page={{ page }}"
+                    {% if current_num == page %}class="pageCls" {% endif %}
+               style="display: inline-block; padding: 5px; margin: 5px;">{{ page }}</a>
+        {% endfor %}
+
+
+        {#判断是否有下一页#}
+        {% if from_name_list.has_next %}
+            <a href="{% url 'external_video' %}?page={{ from_name_list.next_page_number }}"
+               style="display: inline-block; padding: 5px; margin: 5px;">下一页</a>
+        {% endif %}
+    </div>
+{% endblock %}
